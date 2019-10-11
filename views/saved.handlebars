@@ -1,0 +1,88 @@
+  <body class="container border border-primary px-0">
+    <div class="col-md-12 jumbotron mb-0">
+        <div class="text-center">
+            <h1> Mongo Article Scraper</h1>
+        </div>
+    </div>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/"></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+  <div class="navbar-collapse collapse" id="navbarColor01" aria-expanded="true" style="">
+        <ul class="navbar-nav d-flex justify-content-around mx-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/saved">Saved Articles
+              <span class="sr-only"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+</nav>
+<div class="container p-3">
+  <h3 class="display-5 pt-4">Saved articles</h3>
+<div class="row">
+  <div class="col-md-12">
+    {{#each saved}}
+        <div class="article my-3">
+          <h5>{{title}}</h5>
+          <p>{{summary}}</p>
+            <a href={{link}} target="_blank" class="mr-5">Read More</a>
+            <a href="#" target="_blank"class="mr-4" data-toggle="modal" data-target="#noteModal" data-id={{this._id}}>Leave Comment</a>
+              <form action="/delete/{{this.id}}" method="POST" id="delete-article" class="d-inline">
+                  <input type="hidden" name="id" value={{_id}}>
+                  <button class="btn btn-link ml-3" id="saveButton" type="submit">Delete</button>
+              </form>
+        </div>
+      {{/each}}
+  </div>
+</div>
+</div>
+    </div>
+</div>
+</body>
+<!-- Modal -->
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{this.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {{#if this.notes}}
+              {{#each this.notes}}
+                  <div class="panel panel-default" id="body">
+                      <div class="panel-body">
+                          <p> {{this.body}}</p>
+                          <button type="button" class="btn btn-danger delete-note-btn" data-note-id={{this._id}} data-article-id={{this.article}}> X </button>
+                      </div>
+                  </div>
+              {{/each}}
+          {{else}}
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h4>Add a comment!</h4>
+                  </div>
+              </div>
+          {{/if}}
+                <div class="form-group">
+                    <textarea id="note-Body{{this._id}}" class="form-control" rows="5" placeholder="New comment"></textarea>
+                </div>
+            </div>
+      <div class="modal-footer">
+         <button id="savenote" type="button" class="btn btn-primary save-btn" data-id={{this._id}}>Save Note</button>
+      </div>
+    </div>
+  </div>
+</div>

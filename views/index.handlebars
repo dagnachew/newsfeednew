@@ -1,0 +1,52 @@
+  <body class="container  border border-primary px-0">
+    <div class="col-md-12 jumbotron mb-0">
+        <div class="text-center">
+            <h1>Mongo Article Scraper</h1>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="navbar-collapse collapse" id="navbarColor01" aria-expanded="true" style="">
+    <ul class="navbar-nav d-flex justify-content-around mx-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item active" id="scrape">
+        <a class="nav-link" href="/">SCRAPE
+          <span class="sr-only"></span>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/saved">Saved Articles
+          <span class="sr-only"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-12">
+      {{#each result}}
+          <div class="article my-3">
+            <h5>{{title}}</h5>
+            <p>{{summary}}</p>
+              <a href={{link}} target="_blank">Read More</a>
+              <form action="/save/{{this.id}}" method="POST" id="save-article" class="d-inline">
+                  <input type="hidden" name="id" value={{_id}}>
+                  <button class="btn btn-link ml-3" id="saveButton" type="submit">Save Article</button>
+              </form>
+          </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+    <script src="app.js"></script>
+</body>
