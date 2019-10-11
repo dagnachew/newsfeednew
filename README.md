@@ -4,7 +4,7 @@ An app that scrapes articles from the New York Times website and lets users save
 
 ![Mongo Article Scraper](/public/images/screen.png)
 
-Heroku link: https://peaceful-sierra-59981.herokuapp.com/
+Heroku link: https://serene-dusk-16098.herokuapp.com/
 
 ## Technologies Used
 
@@ -13,8 +13,3 @@ Heroku link: https://peaceful-sierra-59981.herokuapp.com/
 * Handlebars.js
 * MongoDB
 * Mongoose
-* npm packages
-    * express
-    * express-handlebars
-    * mongoose
-    * cheerio
